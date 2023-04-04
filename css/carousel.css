@@ -22,6 +22,12 @@ body {
   z-index: 10;
 }
 
+.carousel-authors {
+  bottom: 3rem;
+  z-index: 10;
+  text-align: center;
+}
+
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 32rem;
@@ -39,7 +45,7 @@ body {
 -------------------------------------------------- */
 
 /* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
+.marketing .col-lg-6 {
   margin-bottom: 1.5rem;
   text-align: center;
 }
@@ -47,7 +53,7 @@ body {
   font-weight: 400;
 }
 /* rtl:begin:ignore */
-.marketing .col-lg-4 p {
+.marketing .col-lg-6 p {
   margin-right: .75rem;
   margin-left: .75rem;
 }
