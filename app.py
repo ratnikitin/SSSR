@@ -4,7 +4,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
 
-
 # class LoginForm(FlaskForm):
 #     username = StringField('Логин', validators=[DataRequired()])
 #     password = PasswordField('Пароль', validators=[DataRequired()])
@@ -14,6 +13,8 @@ from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SuperSecretKey'
+
+
 # app.debug = True
 
 
@@ -47,7 +48,7 @@ def signin():
         return render_template('sidebars.html')
         # return json.dumps({'validation' : validateUser(username, password)})
     # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
-    return json.dumps({'validation' : False})  # временно
+    return json.dumps({'validation': False})  # временно
 
 
 def validateUser(username, password):
