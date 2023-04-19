@@ -44,7 +44,7 @@ def signin():
     if username and password:
         # тут будет обработка паролья и почты
         validateUser(username, password)
-        return render_template('sidebars.html')
+        return render_template('secondvers.html')
         # return json.dumps({'validation' : validateUser(username, password)})
     # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
     return json.dumps({'validation' : False})  # временно
@@ -68,8 +68,9 @@ def reg():
 
 @app.route('/sssr')
 def sssr_main():
-    return render_template('carousel.html')
+    # return render_template('carousel.html')
+    return render_template('player.html')  # пока что эта страница но потом должна быть та что выше строчкой
 
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(port=8000)
