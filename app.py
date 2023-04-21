@@ -51,9 +51,32 @@ def signin():
     return json.dumps({'validation': False})  # временно
 
 
+@app.route("/register", methods=['POST'])
+def register():
+    username = request.form['username']
+    password = request.form['password']
+    name = request.form['name']
+    surname = request.form['surname']
+    if username and password and name and surname:
+        # тут будет обработка паролья и почты
+        validateregisterUser(username, password, name, surname)
+        return render_template('secondvers.html')
+        # return json.dumps({'validation' : validateUser(username, password)})
+    # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
+    return json.dumps({'validation': False})  # временно
+
+
 def validateUser(username, password):
     print(username)
     print(password)
+    return True
+
+
+def validateregisterUser(username, password, name, surname):
+    print(username)
+    print(password)
+    print(name)
+    print(surname)
     return True
 
 
@@ -67,10 +90,35 @@ def reg():
     return render_template('register.html')
 
 
+@app.route('/search_main')
+def search_main():
+    return render_template('search_main.html')
+
+
+@app.route('/like')
+def like():
+    return render_template('.html')
+
+
+@app.route('/main')
+def main():
+    return render_template('secondvers.html')
+
+
+@app.route('/log_out')
+def log_out():
+    return render_template('carousel.html')
+
+
+@app.route('/studio')
+def studio():
+    return render_template('.html')
+
+
 @app.route('/sssr')
 def sssr_main():
-    # return render_template('carousel.html')
-    return render_template('player.html')  # пока что эта страница но потом должна быть та что выше строчкой
+    return render_template('carousel.html')
+    # return render_template('player.html')  # пока что эта страница но потом должна быть та что выше строчкой
 
 
 if __name__ == '__main__':
