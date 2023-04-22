@@ -1,15 +1,35 @@
 from flask import Flask, request, json, render_template
-import sqlite3
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired
-
+from data import db_session
+from data.db_session import User
 # class LoginForm(FlaskForm):
 #     username = StringField('Логин', validators=[DataRequired()])
 #     password = PasswordField('Пароль', validators=[DataRequired()])
 #     remember_me = BooleanField('Запомнить меня')
 #     submit = SubmitField('Войти')
+# ура база данных подключена
+db_session.global_init("db/data.db")
+db_sess = db_session.create_session()
+# добавление юсеров
+# user = User()
+# user.name = "Пользователь 1"
+# user.surname = "йоаймо"
+# user.email = "email@email.ru"
+# db_sess = db_session.create_session()
+# db_sess.add(user)
+# db_sess.commit()
+# user2 = User()
+# user2.name = "Пользователь 2"
+# user2.surname = "йоаймо"
+# user2.email = "mail@email.ru"
+# db_sess = db_session.create_session()
+# db_sess.add(user2)
+# db_sess.commit()
 
+# сортировка юсеров
+# for user in db_sess.query(User).all():
+#     print(user)
+# for user in db_sess.query(User).filter((User.id > 1) | (User.email.notilike("%1%"))):
+#     print(user)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SuperSecretKey'
@@ -40,30 +60,49 @@ def home():
 
 @app.route("/signin", methods=['POST'])
 def signin():
-    username = request.form['username']
+    global db_sess
+    email = request.form['username']
     password = request.form['password']
-    if username and password:
-        # тут будет обработка паролья и почты
-        validateUser(username, password)
-        return render_template('secondvers.html')
+    if email and password:
+        db_sess = db_session.create_session()
+        for user in db_sess.query(User).filter((User.email == email)):
+            print(user.hashed_password, User.check_password(user, password))
+            if User.check_password(user, password):
+                validateUser(email, password)
+                print(user.name)
+                return render_template('secondvers.html')
+
         # return json.dumps({'validation' : validateUser(username, password)})
     # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
-    return json.dumps({'validation': False})  # временно
+            else:
+                return json.dumps({'validation': False})  # временно
 
 
 @app.route("/register", methods=['POST'])
 def register():
-    username = request.form['username']
+    global db_sess
+    email = request.form['username']
     password = request.form['password']
     name = request.form['name']
     surname = request.form['surname']
-    if username and password and name and surname:
-        # тут будет обработка паролья и почты
-        validateregisterUser(username, password, name, surname)
+    if email and password and name and surname:
+        user = User()
+        user.name = name
+        user.surname = surname
+        user.email = email
+        for users in db_sess.query(User).filter(User.email == email):
+            if users:
+                return json.dumps({'validation': False})
+        user.password = User.set_password(user, password)
+        # db_sess = db_session.create_session()
+        db_sess.add(user)
+        db_sess.commit()
+        validateregisterUser(email, password, name, surname)
         return render_template('secondvers.html')
         # return json.dumps({'validation' : validateUser(username, password)})
     # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
-    return json.dumps({'validation': False})  # временно
+    else:
+        return json.dumps({'validation': False})  # временно
 
 
 def validateUser(username, password):
