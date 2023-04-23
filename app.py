@@ -1,6 +1,7 @@
 from flask import Flask, request, json, render_template
 from data import db_session
 from data.db_session import User
+import os
 # class LoginForm(FlaskForm):
 #     username = StringField('Логин', validators=[DataRequired()])
 #     password = PasswordField('Пароль', validators=[DataRequired()])
@@ -151,7 +152,28 @@ def log_out():
 
 @app.route('/studio')
 def studio():
-    return render_template('.html')
+    return render_template('studio.html')
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    file_audio = request.files['audio_file']
+    track_name = request.form['track_name']
+    artist = request.form['artist']
+    file_cover = request.files['cover_file']
+    print(os.path.dirname(__file__))
+    print(os.path.join(os.path.dirname(__file__), '..'))
+    print(os.path.dirname(os.path.realpath(__file__)))
+    print(os.path.abspath(os.path.dirname(__file__)))
+    if file_cover and artist and track_name and file_audio:
+        # filename = file_audio.filename
+        # file_audio.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".mp3")))
+        # file_cover.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".jpeg")))
+        file_audio.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Audio"), str(artist + "_" + track_name + ".mp3")))
+        file_cover.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Cover"), str(artist + "_" + track_name + ".jpeg")))
+        return render_template('secondvers.html')
+    else:
+        return render_template('carousel.html')
 
 
 @app.route('/sssr')
