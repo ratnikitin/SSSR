@@ -137,6 +137,8 @@ def upload_file():
                                           str(artist + "_" + track_name + ".jpeg"))
         music.author_name = artist
         music.track_name = track_name
+        db_sess.add(music)
+        db_sess.commit()
         return render_template('secondvers.html')
     else:
         return render_template('carousel.html')
