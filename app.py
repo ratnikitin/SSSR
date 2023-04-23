@@ -1,6 +1,6 @@
 from flask import Flask, request, json, render_template
 import db_session
-from db_session import User
+from db_session import User, Music
 import os
 
 db_session.global_init("db/data.db")
@@ -30,8 +30,8 @@ def signin():
                 print(user.name)
                 return render_template('secondvers.html')
 
-        # return json.dumps({'validation' : validateUser(username, password)})
-    # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
+            # return json.dumps({'validation' : validateUser(username, password)}) тут надо сделать чтобы при
+            # неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
             else:
                 return json.dumps({'validation': False})  # временно
 
@@ -126,12 +126,20 @@ def upload_file():
         # filename = file_audio.filename
         # file_audio.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".mp3")))
         # file_cover.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".jpeg")))
-        file_audio.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Audio"), str(artist + "_" + track_name + ".mp3")))
-        file_cover.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Cover"), str(artist + "_" + track_name + ".jpeg")))
+        file_audio.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Audio"),
+                                     str(artist + "_" + track_name + ".mp3")))
+        file_cover.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Cover"),
+                                     str(artist + "_" + track_name + ".jpeg")))
+        music = Music()
+        music.sound_path = os.path.join(str(os.path.dirname(__file__) + "/static/other/Audio"),
+                                        str(artist + "_" + track_name + ".mp3"))
+        music.picture_path = os.path.join(str(os.path.dirname(__file__) + "/static/other/Cover"),
+                                          str(artist + "_" + track_name + ".jpeg"))
+        music.author_name = artist
+        music.track_name = track_name
         return render_template('secondvers.html')
     else:
         return render_template('carousel.html')
-
 
 
 @app.route('/sssr')
