@@ -19,7 +19,6 @@ def global_init(db_file):
         raise Exception("Необходимо указать файл базы данных.")
 
     conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False'
-    print(f"Подключение к базе данных по адресу {conn_str}")
 
     engine = sa.create_engine(conn_str, echo=False)
     __factory = orm.sessionmaker(bind=engine)
@@ -39,12 +38,9 @@ class User(SqlAlchemyBase):
                    primary_key=True, autoincrement=True)
     name = sa.Column(sa.String, nullable=True)
     surname = sa.Column(sa.String, nullable=True)
-    # about = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     email = sa.Column(sa.String,
                       index=True, unique=True, nullable=True)
     hashed_password = sa.Column(sa.String, nullable=True)
-    # created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-    #                                  default=datetime.datetime.now)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
@@ -53,15 +49,16 @@ class User(SqlAlchemyBase):
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
 
-# мб реализация избранного
-# class News(SqlAlchemyBase):
-#     __tablename__ = 'news'
-#
-#     id = sa.Column(sa.Integer,
-#                    primary_key=True, autoincrement=True)
-#     title = sa.Column(sa.String, nullable=True)
-#     author = sa.Column(sa.String, nullable=True)
-#
-#     user_id = sa.Column(sa.Integer,
-#                         sa.ForeignKey("users.id"))
-#     user = orm.relationship('User')
+
+class Favs(SqlAlchemyBase):
+    __tablename__ = 'favs'
+
+    id = sa.Column(sa.Integer,
+                   primary_key=True, autoincrement=True)
+    sound_path = sa.Column(sa.String, nullable=True)
+    picture_path = sa.Column(sa.String, nullable=True)
+    author_path = sa.Column(sa.String, nullable=True)
+    name_path = sa.Column(sa.String, nullable=True)
+    user_id = sa.Column(sa.Integer,
+                        sa.ForeignKey("users.id"))
+    user = orm.relationship('User')
