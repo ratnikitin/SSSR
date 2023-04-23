@@ -1,6 +1,6 @@
 from flask import Flask, request, json, render_template
-from data import db_session
-from data.db_session import User
+import db_session
+from db_session import User
 
 db_session.global_init("db/data.db")
 db_sess = db_session.create_session()
@@ -28,6 +28,9 @@ def signin():
                 validateUser(email, password)
                 print(user.name)
                 return render_template('secondvers.html')
+
+        # return json.dumps({'validation' : validateUser(username, password)})
+    # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
             else:
                 return json.dumps({'validation': False})  # временно
 
@@ -48,10 +51,13 @@ def register():
             if users:
                 return json.dumps({'validation': False})
         user.password = User.set_password(user, password)
+        # db_sess = db_session.create_session()
         db_sess.add(user)
         db_sess.commit()
         validateregisterUser(email, password, name, surname)
         return render_template('secondvers.html')
+        # return json.dumps({'validation' : validateUser(username, password)})
+    # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
     else:
         return json.dumps({'validation': False})  # временно
 
