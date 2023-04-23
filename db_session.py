@@ -50,15 +50,15 @@ class User(SqlAlchemyBase):
         return check_password_hash(self.hashed_password, password)
 
 
-class Favs(SqlAlchemyBase):
+class Music(SqlAlchemyBase):
     __tablename__ = 'favs'
 
     id = sa.Column(sa.Integer,
                    primary_key=True, autoincrement=True)
     sound_path = sa.Column(sa.String, nullable=True)
     picture_path = sa.Column(sa.String, nullable=True)
-    author_path = sa.Column(sa.String, nullable=True)
-    name_path = sa.Column(sa.String, nullable=True)
-    user_id = sa.Column(sa.Integer,
-                        sa.ForeignKey("users.id"))
-    user = orm.relationship('User')
+    author_name = sa.Column(sa.String, nullable=True)
+    track_name = sa.Column(sa.String, nullable=True)
+    # user_id = sa.Column(sa.Integer,
+    #                     sa.ForeignKey("users.id"))
+    # user = orm.relationship('User')
