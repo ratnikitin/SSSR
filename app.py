@@ -137,7 +137,7 @@ def upload_file():
         print(music.sound_path)
         print(music.picture_path)
         print(music.author_name)
-        print(music.track_name)
+        print(music.ц)
         db_sess.add(music)
         db_sess.commit()
         return render_template('studio_nice.html')
