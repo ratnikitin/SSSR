@@ -86,3 +86,14 @@ html { box-sizing: border-box; height: 100%; height: -webkit-fill-available; } *
 
 
 
+.nice_studio {
+/*	box-shadow: 0 20px 20px 0 rgba(144, 48, 192, 0.6);*/
+	text-shadow: 1px 1px 2px white, 0 0 1em rgba(144, 48, 192, 0.6), 0 0 0.2em rgba(144, 48, 192, 0.6);
+/*    color: #57bd84;*/
+}
+
+.warn {
+	color: #990000;
+	font-size: 2rem;
+	text-align: center;
+}

@@ -2,6 +2,7 @@ from flask import Flask, request, json, render_template
 import db_session
 from db_session import User, Music
 import os
+import pathlib
 
 db_session.global_init("db/data.db")
 db_sess = db_session.create_session()
@@ -118,10 +119,6 @@ def upload_file():
     track_name = request.form['track_name']
     artist = request.form['artist']
     file_cover = request.files['cover_file']
-    print(os.path.dirname(__file__))
-    print(os.path.join(os.path.dirname(__file__), '..'))
-    print(os.path.dirname(os.path.realpath(__file__)))
-    print(os.path.abspath(os.path.dirname(__file__)))
     if file_cover and artist and track_name and file_audio:
         # filename = file_audio.filename
         # file_audio.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".mp3")))
@@ -137,11 +134,15 @@ def upload_file():
                                           str(artist + "_" + track_name + ".jpeg"))
         music.author_name = artist
         music.track_name = track_name
+        print(music.sound_path)
+        print(music.picture_path)
+        print(music.author_name)
+        print(music.track_name)
         db_sess.add(music)
         db_sess.commit()
-        return render_template('secondvers.html')
+        return render_template('studio_nice.html')
     else:
-        return render_template('carousel.html')
+        return render_template('studio_bad.html')
 
 
 @app.route('/sssr')
