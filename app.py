@@ -2,7 +2,6 @@ from flask import Flask, request, json, render_template
 import db_session
 from db_session import User, Music
 import os
-import pathlib
 import difflib
 import random
 import json
@@ -16,7 +15,6 @@ app.config['SECRET_KEY'] = 'SuperSecretKey'
 
 @app.route("/")
 def home():
-    # return render_template('html/carousel.html')
     return render_template('carousel.html')
 
 
@@ -28,17 +26,10 @@ def signin():
     if email and password:
         db_sess = db_session.create_session()
         for user in db_sess.query(User).filter((User.email == email)):
-            print(user.hashed_password, User.check_password(user, password))
             if User.check_password(user, password):
-                validateUser(email, password)
-                print(user.name)
                 return render_template('secondvers.html', songs=update_list(), rand=random_music())
-
-            # return json.dumps({'validation' : validateUser(username, password)}) тут надо сделать чтобы при
-            # неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
             else:
                 return render_template('signin_bad.html')
-                # return json.dumps({'validation': False})  # временно
     else:
         return render_template('signin_bad_2.html')
 
@@ -57,33 +48,13 @@ def register():
         user.email = email
         for users in db_sess.query(User).filter(User.email == email):
             if users:
-                # return json.dumps({'validation': False})
                 return render_template('register_bad.html')
         user.password = User.set_password(user, password)
-        # db_sess = db_session.create_session()
         db_sess.add(user)
         db_sess.commit()
-        validateregisterUser(email, password, name, surname)
         return render_template('secondvers.html', songs=update_list(), rand=random_music())
-        # return json.dumps({'validation' : validateUser(username, password)})
-    # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
     else:
         return render_template('register_bad_2.html')
-        # return json.dumps({'validation': False})  # временно
-
-
-def validateUser(username, password):
-    print(username)
-    print(password)
-    return True
-
-
-def validateregisterUser(username, password, name, surname):
-    print(username)
-    print(password)
-    print(name)
-    print(surname)
-    return True
 
 
 @app.route('/sign')
@@ -128,9 +99,6 @@ def upload_file():
     artist = request.form['artist']
     file_cover = request.files['cover_file']
     if file_cover and artist and track_name and file_audio:
-        # filename = file_audio.filename
-        # file_audio.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".mp3")))
-        # file_cover.save(os.path.join(os.path.dirname(__file__), str(artist + "_" + track_name + ".jpeg")))
         file_audio.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Audio"),
                                      str(artist + "_" + track_name + ".mp3")))
         file_cover.save(os.path.join(str(os.path.dirname(__file__) + "/static/other/Cover"),
@@ -184,30 +152,21 @@ def random_music():
 def search_list():
     what = request.form['what']
     s = []
-    print(s)
     for music in db_sess.query(Music).all():
         s.append(str(music.author_name + "_" + music.track_name))
-    # for music in db_sess.query(Music).all():
-    #     s.append(str(music.author_name))
-    # for music in db_sess.query(Music).all():
-    #     s.append(str(music.track_name))
-    print(s)
     matches = difflib.get_close_matches(what, s, n=10)
-    print(matches)
     return render_template('search.html', what=what, matches=matches)
 
 
 def update_list_search(song):
     s = list()
     s.append(song)
-    print(s)
     return json.dumps(s)
 
 
 @app.route('/search_song', methods=['POST'])
 def search_song():
     song = request.form['search_song']
-    print(song)
     return render_template('secondvers_search.html', songs=update_list_search(song), search=song)
 
 

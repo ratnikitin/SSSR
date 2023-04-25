@@ -59,6 +59,3 @@ class Music(SqlAlchemyBase):
     picture_path = sa.Column(sa.String, nullable=True)
     author_name = sa.Column(sa.String, nullable=True)
     track_name = sa.Column(sa.String, nullable=True)
-    # user_id = sa.Column(sa.Integer,
-    #                     sa.ForeignKey("users.id"))
-    # user = orm.relationship('User')
