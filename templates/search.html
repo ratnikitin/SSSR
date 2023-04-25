@@ -226,8 +226,12 @@
 		<img src="{{ url_for ('static', filename = 'other/images/PCRM.jpeg') }}" alt="music-cover" id="cover" />
 				</div>-->
 				<div>
-				<img src="../static/other/Cover/{{ item }}.jpeg" alt="music-cover" id="cover" height="80" width="80" />
-				<button type="button" class="btn btn-link">{{ item }}</button>
+				<!--<img src="../static/other/Cover/{{ item }}.jpeg" alt="music-cover" id="cover" height="80" width="80" />-->
+				<form action="/search_song" method="POST">
+					<img src="../static/other/Cover/{{ item }}.jpeg" alt="music-cover" id="cover" height="80" width="80" />
+					<input type="submit" name="search_song" class="btn btn-link" value="{{ item }}" />
+				</form>
+				<!--<button type="button" class="btn btn-link">{{ item }}</button>-->
 				</div>
         {% endfor %}
 </main>

@@ -278,7 +278,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
 
 
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-	<script src="" type="text/javascript">
+	<script>
+		// Songs Titles
+		window.songs = {{ songs | safe}};
+	</script>
+	<script>
 		const musicContainer = document.getElementById("music-container");
 const playBtn = document.getElementById("play");
 const prevBtn = document.getElementById("prev");
@@ -288,11 +292,10 @@ const progress = document.getElementById("progress");
 const progressContainer = document.getElementById("progress-container");
 const title = document.getElementById("title");
 const cover = document.getElementById("cover");
-// Songs Titles
 
-window.songs = {{ songs }}
 // KeepTrack of song
 let songIndex = 0;
+//var songIndex = Math.floor(Math.random() * arr.length);
 // Initially load song details into DOM
 loadSong(window.songs[songIndex]);
 // Update song details
@@ -300,6 +303,10 @@ function loadSong(song) {
 title.innerText = song;
 audio.src = `/static/other/Audio/${song}.mp3`;
 cover.src = `/static/other/Cover/${song}.jpeg`;
+}
+function arrayRandElement(arr) {
+    var rand = Math.floor(Math.random() * arr.length);
+    return arr[rand];
 }
 // Play Song
 function playSong() {
@@ -317,20 +324,23 @@ audio.pause();
 }
 // Previous Song
 function prevSong() {
-songIndex--;
-if (songIndex < 0) {
-songIndex = window.songs.length - 1;
-}
-loadSong(window.songs[songIndex]);
+//songIndex--;
+//if (songIndex < 0) {
+//songIndex = window.songs.length - 1;
+//}
+//loadSong(window.songs[songIndex]);
+loadSong(arrayRandElement(window.songs));
 playSong();
 }
 // Next Song
 function nextSong() {
-songIndex++;
-if (songIndex > window.songs.length - 1) {
-songIndex = 0;
-}
-loadSong(window.songs[songIndex]);
+//songIndex++;
+//if (songIndex > window.songs.length - 1) {
+//songIndex = 0;
+//}
+//loadSong(window.songs[songIndex]);
+loadSong(arrayRandElement(window.songs));
+playSong();
 playSong();
 }
 // Update Progress bar

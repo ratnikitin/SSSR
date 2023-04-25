@@ -5,6 +5,7 @@ import os
 import pathlib
 import difflib
 import random
+import json
 
 db_session.global_init("db/data.db")
 db_sess = db_session.create_session()
@@ -102,7 +103,7 @@ def search_main():
 
 @app.route('/like')
 def like():
-    return render_template('.html')
+    return render_template('like_song.html')
 
 
 @app.route('/main')
@@ -144,7 +145,7 @@ def upload_file():
         print(music.sound_path)
         print(music.picture_path)
         print(music.author_name)
-        print(music.ц)
+        print(music.track_name)
         db_sess.add(music)
         db_sess.commit()
         return render_template('studio_nice.html')
@@ -160,13 +161,21 @@ def sssr_main():
 def update_list():
     s = []
     for music in db_sess.query(Music).all():
-        s.append(str(music.author_name + "_" + music.track_name + ".mp3"))
+        s.append(str(music.author_name + "_" + music.track_name))
+    print(s)
+    return json.dumps(s)
+
+
+def update_list_for_rand():
+    s = []
+    for music in db_sess.query(Music).all():
+        s.append(str(music.author_name + "_" + music.track_name))
     print(s)
     return s
 
 
 def random_music():
-    r = random.choice(update_list())[:-4]
+    r = random.choice(update_list_for_rand())
     print(r)
     return r
 
@@ -186,6 +195,20 @@ def search_list():
     matches = difflib.get_close_matches(what, s, n=10)
     print(matches)
     return render_template('search.html', what=what, matches=matches)
+
+
+def update_list_search(song):
+    s = list()
+    s.append(song)
+    print(s)
+    return json.dumps(s)
+
+
+@app.route('/search_song', methods=['POST'])
+def search_song():
+    song = request.form['search_song']
+    print(song)
+    return render_template('secondvers_search.html', songs=update_list_search(song), search=song)
 
 
 if __name__ == '__main__':

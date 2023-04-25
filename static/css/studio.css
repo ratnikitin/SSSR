@@ -97,3 +97,8 @@ html { box-sizing: border-box; height: 100%; height: -webkit-fill-available; } *
 	font-size: 2rem;
 	text-align: center;
 }
+
+.sooon {
+	font-size: 5rem;
+	text-align: center;
+}
