@@ -10,11 +10,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -33,13 +29,11 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="../static/css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
 
 <header>
-<!--  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-roz">-->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ url_for('sssr_main') }}">SSSR Music</a>
@@ -48,23 +42,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-<!--          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('sign') }}">Вход</a>
           </li>
 		  <li class="nav-item">
             <a class="nav-link" href="{{ url_for('reg') }}">Регистрация</a>
           </li>
-<!--			<li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>-->
         </ul>
-        <!--<form class="d-flex">
-          <button class="btn btn-outline-success" type="submit">Log in</button>
-		  <button class="btn btn-outline-success" type="submit">Registr</button>
-        </form>-->
       </div>
     </div>
   </nav>
@@ -72,12 +56,10 @@
 
 <main class="form-signin">
   <form action="/signin" method="POST">
-    <!--<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">  тут будет логотип сайта-->
     <h1 class="h3 mb-3 fw-normal">Вход</h1>
 <div class="warn">
 <label class="form-label" for="form7Example2">Заполните все поля!</label>
 </div>
-
     <div class="form-floating">
       <input type="email" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Электронная почта</label>
@@ -86,29 +68,12 @@
       <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">      
 	  <label for="floatingPassword">Пароль</label>
     </div>
-
-    <!--<div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Запомнить меня
-      </label>
-    </div>-->
     <button class="w-100 btn btn-lg btn-primary" type="submit">Войти</button>
-    <!--<p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>-->
   </form>
-  
-  
-  
 
-  
-  
 </main>
-
 
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 
-   
-
-
-    
   </body>
 </html>

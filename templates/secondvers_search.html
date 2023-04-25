@@ -10,9 +10,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
-    
 
-    <!-- Bootstrap core CSS -->
 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 <link
 rel="stylesheet"
@@ -35,7 +33,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="../static/css/secondvers.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   </head>
@@ -181,13 +178,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-<!--          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>-->
-          
-<!--			<li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>-->
         </ul>
 		<ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li class="nav-item">
@@ -205,38 +195,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
           <svg class="bi" width="24" height="24"><use xlink:href="#heart"/></svg>
         </a>
       </li>
-      <!--<li>
-        <a href="#" class="nav-link py-3 border-bottom" title="Плейлисты" data-bs-toggle="tooltip" data-bs-placement="right">
-          <svg class="bi" width="24" height="24"><use xlink:href="#grid"/></svg>
-        </a>
-      </li>-->
-     
             <div class="dropdown">
       <a href="#" class="nav-link d-flex align-items-center justify-content-center p-3 text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
         <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg> Аккаунт</a>
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3" data-bs-placement="right">
-        <!--<li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Настройки</a></li>
-        <li><a class="dropdown-item" href="#">Профиль</a></li>
-        <li><hr class="dropdown-divider"></li>-->
         <li><a class="dropdown-item" href="{{ url_for('studio') }}">Студия</a></li>
 		<li><a class="dropdown-item" href="{{ url_for('log_out') }}">Выйти</a></li>
       </ul>
-          </ul>
-		  
+        </ul>
     </div>
-        <!--<form class="d-flex">
-          <button class="btn btn-outline-success" type="submit">Log in</button>
-		  <button class="btn btn-outline-success" type="submit">Registr</button>
-        </form>-->
       </div>
     </div>
   </nav>
 </header>
-
-
-
-
 
 <main>
 
@@ -272,11 +243,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
 </div>
  </div>
 </div>
-
-
 </main>
-
-
     <script src="../static/js/bootstrap.bundle.min.js"></script>
 	<script>
 		// Songs Titles
@@ -375,8 +342,5 @@ progressContainer.addEventListener("click", setProgress);
 // Song End
 audio.addEventListener("ended", nextSong);
 	</script>
-
-      <!--<script src="../static/js/firstvers.js"></script>-->
-	  		  <!--<script src="../static/js/player.js"></script>-->
   </body>
 </html>

@@ -10,9 +10,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
-    
 
-    <!-- Bootstrap core CSS -->
 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <style>
@@ -32,9 +30,7 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="../static/css/search.css" rel="stylesheet">
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />-->
   </head>
   <body>
     
@@ -168,7 +164,6 @@
 </svg>
 
 
-
 <header>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -206,8 +201,7 @@
         <li><a class="dropdown-item" href="{{ url_for('studio') }}">Студия</a></li>
 		<li><a class="dropdown-item" href="{{ url_for('log_out') }}">Выйти</a></li>
       </ul>
-          </ul>
-		  
+        </ul>
 
       </div>
     </div>
@@ -215,31 +209,21 @@
 </header>
 
 
-
-
-
 <main>
   
 <h1 class="h1 mb-3 fw-normal">Результаты по запросу "{{what}}":</h1>
         {% for item in matches %}
-  <!--<div class="img-container">
-		<img src="{{ url_for ('static', filename = 'other/images/PCRM.jpeg') }}" alt="music-cover" id="cover" />
-				</div>-->
 				<div>
-				<!--<img src="../static/other/Cover/{{ item }}.jpeg" alt="music-cover" id="cover" height="80" width="80" />-->
 				<form action="/search_song" method="POST">
 					<img src="../static/other/Cover/{{ item }}.jpeg" alt="music-cover" id="cover" height="80" width="80" />
 					<input type="submit" name="search_song" class="btn btn-link" value="{{ item }}" />
 				</form>
-				<!--<button type="button" class="btn btn-link">{{ item }}</button>-->
 				</div>
         {% endfor %}
 </main>
 
 
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-<!--	<script src="../static/js/search.js"></script>-->
-
 	
   </body>
 </html>

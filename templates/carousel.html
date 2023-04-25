@@ -12,7 +12,6 @@
 
     
 
-    <!-- Bootstrap core CSS -->
 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -31,14 +30,12 @@
       }
     </style>
 
-    
-    <!-- Custom styles for this template -->
+
     <link href="../static/css/carousel.css" rel="stylesheet">
   </head>
   <body>
     
 <header>
- <!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-roz">-->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ url_for('sssr_main') }}">SSSR Music</a>
@@ -47,23 +44,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-<!--          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('sign') }}">Вход</a>
           </li>
 		  <li class="nav-item">
             <a class="nav-link" href="{{ url_for('reg') }}">Регистрация</a>
           </li>
-<!--			<li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>-->
         </ul>
-        <!--<form class="d-flex">
-          <button class="btn btn-outline-success" type="submit">Log in</button>
-		  <button class="btn btn-outline-success" type="submit">Registr</button>
-        </form>-->
       </div>
     </div>
   </nav>
@@ -79,8 +66,7 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
-		
+
 		<svg class="bd-placeholder-img" width="100%" height="100%" mlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="../static/other/room3.jpg"></svg>
 		
 		<div class="container">
@@ -92,8 +78,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
-		
+
 		<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="../static/other/room2.jpg"></svg>
 
         <div class="container">
@@ -105,8 +90,6 @@
         </div>
       </div>
       <div class="carousel-item">
-        <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>-->
-		
 		<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="../static/other/room1.jpg"></svg>
 
         <div class="container">
@@ -129,41 +112,29 @@
   </div>
 
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
-
   <div class="container marketing">
 
 	<div class="container">
           <div class="carousel-authors">
 		  <h2>Авторы проекта:</h2></div></div>
 
-    <!-- Three columns of text below the carousel -->
     <div class="row">
       <div class="col-lg-6">
-        <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-		
+
 		<svg class="bd-placeholder-img rounded-circle" width="0" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="../static/other/S.jpg" alt="" class="photoa"></svg>
 
 
         <h2>Саша</h2>
         <p>Ученица Яндекс Лицея, люблю музыку.</p>
-        <!--<p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
-      </div><!-- /.col-lg-4 -->
+      </div>
       <div class="col-lg-6">
-        <!--<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-		-->
 		<svg class="bd-placeholder-img rounded-circle" width="0" height="0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="../static/other/R.jpg" alt="" class="photoa"></svg>
 		
 		<h2>Ратмир</h2>
         <p>Ученик Яндекс Лицея, люблю музыку(и дрейн💜).</p>
-        <!--<p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>-->
-      </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+      </div>
+    </div>
 
-
-    <!-- START THE FEATURETTES -->
 
     <hr class="featurette-divider">
 
@@ -203,16 +174,13 @@
 
     <hr class="featurette-divider">
 
-    <!-- /END THE FEATURETTES -->
 
-  </div><!-- /.container -->
+  </div>
 
 
-  <!-- FOOTER -->
   <footer class="container">
     <p class="float-end"><a href="#">Наверх</a></p>
     <p>&copy; 2023 Company, Inc. &middot; 
-	<!--<a href="#">Privacy</a> &middot; <a href="#">Terms</a>-->
 	</p>
 	<p>workmailsssr@gmail.com</p>
   </footer>

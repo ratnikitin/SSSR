@@ -10,9 +10,7 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
-    
 
-    <!-- Bootstrap core CSS -->
 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <style>
@@ -32,9 +30,7 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
     <link href="../static/css/pricing.css" rel="stylesheet">
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />-->
   </head>
   <body>
     
@@ -206,7 +202,7 @@
         <li><a class="dropdown-item" href="{{ url_for('studio') }}">Студия</a></li>
 		<li><a class="dropdown-item" href="{{ url_for('log_out') }}">Выйти</a></li>
       </ul>
-          </ul>
+        </ul>
 		  
 
       </div>
@@ -222,32 +218,15 @@
   <h1 class="visually-hidden">Sidebars examples</h1>
 
 
-
-<!--<form onsubmit="event.preventDefault();" role="search" type="search_menu">-->
-<!--<form role="search" type="search_menu">
-  <label for="search">Введите запрос</label>
-  <input id="search" type="searche" placeholder="Введите запрос…" autofocus required />
-  <!--<button type="submit" type="search" value="Искать">Искать</button>   --*> 
-  <button type="searchee" value="Искать" />
-</form>-->
-
-
-
 <form action="/search_list" role="search" method="POST">
   <label for="search">Введите запрос</label>
   <input id="search" name="what" type="search" placeholder="Введите запрос…" autofocus required />
   <button type="submit">Искать</button>    
 </form>
 
-
-
-<!--  <div class="b-example-divider"></div>-->
 </main>
 
-
     <script src="../static/js/bootstrap.bundle.min.js"></script>
-	<!--<script src="../static/js/search_main.js"></script>-->
-
 	
   </body>
 </html>
