@@ -8,18 +8,17 @@ const progressContainer = document.getElementById("progress-container");
 const title = document.getElementById("title");
 const cover = document.getElementById("cover");
 // Songs Titles
-const songs = ["PCRM", "Джизус - На удачу", "m0v - run", "POLUGHOUL - Аянами Рей", "The Weeknd - Blinding Lights",
-"The Weeknd - Save Your Tears", "XXXTentacion - changes", "XXXTentacion - Ex Bitch", "YEAT - Monëy so big",
-"Young Thug - Tick Tock"];
+
+window.songs = {{ songs }}
 // KeepTrack of song
 let songIndex = 0;
 // Initially load song details into DOM
-loadSong(songs[songIndex]);
+loadSong(window.songs[songIndex]);
 // Update song details
 function loadSong(song) {
 title.innerText = song;
-audio.src = `/static/other/music/${song}.mp3`;
-cover.src = `/static/other/images/${song}.jpeg`;
+audio.src = `/static/other/Audio/${song}.mp3`;
+cover.src = `/static/other/Cover/${song}.jpeg`;
 }
 // Play Song
 function playSong() {
@@ -39,18 +38,18 @@ audio.pause();
 function prevSong() {
 songIndex--;
 if (songIndex < 0) {
-songIndex = songs.length - 1;
+songIndex = window.songs.length - 1;
 }
-loadSong(songs[songIndex]);
+loadSong(window.songs[songIndex]);
 playSong();
 }
 // Next Song
 function nextSong() {
 songIndex++;
-if (songIndex > songs.length - 1) {
+if (songIndex > window.songs.length - 1) {
 songIndex = 0;
 }
-loadSong(songs[songIndex]);
+loadSong(window.songs[songIndex]);
 playSong();
 }
 // Update Progress bar

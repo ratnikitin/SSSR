@@ -37,3 +37,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.warn {
+	color: #990000;
+	font-size: 1rem;
+	text-align: center;
+}

@@ -3,6 +3,8 @@ import db_session
 from db_session import User, Music
 import os
 import pathlib
+import difflib
+import random
 
 db_session.global_init("db/data.db")
 db_sess = db_session.create_session()
@@ -29,12 +31,15 @@ def signin():
             if User.check_password(user, password):
                 validateUser(email, password)
                 print(user.name)
-                return render_template('secondvers.html')
+                return render_template('secondvers.html', songs=update_list(), rand=random_music())
 
             # return json.dumps({'validation' : validateUser(username, password)}) тут надо сделать чтобы при
             # неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
             else:
-                return json.dumps({'validation': False})  # временно
+                return render_template('signin_bad.html')
+                # return json.dumps({'validation': False})  # временно
+    else:
+        return render_template('signin_bad_2.html')
 
 
 @app.route("/register", methods=['POST'])
@@ -51,17 +56,19 @@ def register():
         user.email = email
         for users in db_sess.query(User).filter(User.email == email):
             if users:
-                return json.dumps({'validation': False})
+                # return json.dumps({'validation': False})
+                return render_template('register_bad.html')
         user.password = User.set_password(user, password)
         # db_sess = db_session.create_session()
         db_sess.add(user)
         db_sess.commit()
         validateregisterUser(email, password, name, surname)
-        return render_template('secondvers.html')
+        return render_template('secondvers.html', songs=update_list(), rand=random_music())
         # return json.dumps({'validation' : validateUser(username, password)})
     # тут надо сделать чтобы при неправильном вводе данных или если вовсе учетной записи нет чтобы писало обэтом красным
     else:
-        return json.dumps({'validation': False})  # временно
+        return render_template('register_bad_2.html')
+        # return json.dumps({'validation': False})  # временно
 
 
 def validateUser(username, password):
@@ -100,7 +107,7 @@ def like():
 
 @app.route('/main')
 def main():
-    return render_template('secondvers.html')
+    return render_template('secondvers.html', songs=update_list(), rand=random_music())
 
 
 @app.route('/log_out')
@@ -148,7 +155,37 @@ def upload_file():
 @app.route('/sssr')
 def sssr_main():
     return render_template('carousel.html')
-    # return render_template('player.html')  # пока что эта страница но потом должна быть та что выше строчкой
+
+
+def update_list():
+    s = []
+    for music in db_sess.query(Music).all():
+        s.append(str(music.author_name + "_" + music.track_name + ".mp3"))
+    print(s)
+    return s
+
+
+def random_music():
+    r = random.choice(update_list())[:-4]
+    print(r)
+    return r
+
+
+@app.route('/search_list', methods=['POST'])
+def search_list():
+    what = request.form['what']
+    s = []
+    print(s)
+    for music in db_sess.query(Music).all():
+        s.append(str(music.author_name + "_" + music.track_name))
+    # for music in db_sess.query(Music).all():
+    #     s.append(str(music.author_name))
+    # for music in db_sess.query(Music).all():
+    #     s.append(str(music.track_name))
+    print(s)
+    matches = difflib.get_close_matches(what, s, n=10)
+    print(matches)
+    return render_template('search.html', what=what, matches=matches)
 
 
 if __name__ == '__main__':
